@@ -33,6 +33,7 @@ import static io.undertow.servlet.Servlets.defaultContainer;
 import static io.undertow.servlet.Servlets.deployment;
 import static io.undertow.servlet.Servlets.servlet;
 
+import java.util.Date;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -54,10 +55,10 @@ public class ServletServer {
                     .setDeploymentName("test.war")
                     .addServlets(
                             servlet("MessageServlet", MessageServlet.class)
-                                    .addInitParam("message", "Hello World")
+                                    .addInitParam("message", "Hello World_" + new Date())
                                     .addMapping("/*"),
                             servlet("MyServlet", MessageServlet.class)
-                                    .addInitParam("message", "MyServlet")
+                                    .addInitParam("message", "MyServlet_" + new Date())
                                     .addMapping("/myservlet"));
 
             DeploymentManager manager = defaultContainer().addDeployment(servletBuilder);
